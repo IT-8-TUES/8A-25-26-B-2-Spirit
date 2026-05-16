@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Group Expenses</title>
-        <script src="load_expenses.js" defer></script>
-    </head>
-    <body>
-        <a href="add_expense.html">Add Expense</a>
-        <section>
-            <div id="expenses"></div>
-        </section>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Expenses</title>
+    <script src="load_expenses.js" defer></script>
+</head>
+
+<body>
+    <!--Add link to the gorups tag-->
+    <a><- Back to gorups</a>
+            <div>
+                <h6 id=count_participants></h6>
+                <h6>·</h6>
+                <h6 id=count_expenses></h6>
+            </div>
+            <div id="participants"></div>
+
+            <div id="total">
+                <h6>TOTAL SPENT</h6>
+                <h6 id = total_amount></h6>
+            </div>
+            <div id="user_owes">
+                <h6>YOU OWE</h6>
+                <h6 id = user_owes_amount></h6>
+            </div>
+            <div id="owed_to_user">
+                <h6>OWED TO YOU</h6>
+                <h6 id = "owed_to_user_amount"></h6>
+            </div>
+
+            <section>
+                <div id="expenses"></div>
+            </section>
+            <a href="add_expense.html">+</a>
+</body>
+
 </html>
