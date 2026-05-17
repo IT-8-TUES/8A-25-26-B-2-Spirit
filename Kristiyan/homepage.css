@@ -11,6 +11,54 @@ body {
   min-height: 100vh;
 }
 
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: #f5ede0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0 60px;
+  height: 64px;
+  gap: 32px;
+}
+
+nav ul img {
+  margin-right: auto;
+  height: 80px;
+}
+
+nav ul a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  transition: color 0.2s ease;
+}
+
+nav ul a:hover {
+  color: #1b725f;
+}
+
+nav ul a:last-child {
+  background-color: #e8622a;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 50px;
+}
+
+nav ul a:last-child:hover {
+  background-color: #cf541f;
+  color: #fff;
+}
+
 main {
   display: flex;
   align-items: center;
