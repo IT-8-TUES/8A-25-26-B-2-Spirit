@@ -1,40 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group Expenses</title>
+    <link rel="stylesheet" href="group_and_expense.css">
     <script src="load_expenses.js" defer></script>
 </head>
-
 <body>
-    <!--Add link to the gorups tag-->
-    <a><- Back to gorups</a>
-            <div>
-                <h6 id=count_participants></h6>
-                <h6>·</h6>
-                <h6 id=count_expenses></h6>
-            </div>
-            <div id="participants"></div>
+    <div class="container section">
+        <!-- TODO: link to the groups page once it exists -->
+        <a href="#" class="text-accent">← Back to groups</a>
 
-            <div id="total">
-                <h6>TOTAL SPENT</h6>
-                <h6 id = total_amount></h6>
-            </div>
-            <div id="user_owes">
-                <h6>YOU OWE</h6>
-                <h6 id = user_owes_amount></h6>
-            </div>
-            <div id="owed_to_user">
-                <h6>OWED TO YOU</h6>
-                <h6 id = "owed_to_user_amount"></h6>
-            </div>
+        <h1 class="heading-lg">Travel</h1>
 
-            <section>
-                <div id="expenses"></div>
-            </section>
-            <a href="add_expense.html">+</a>
+        <div class="meta-row">
+            <span class="text-muted" id="count_participants"></span>
+            <span class="text-muted">·</span>
+            <span class="text-muted" id="count_expenses"></span>
+        </div>
+
+        <div class="chip-list" id="participants"></div>
+
+        <div class="summary-grid">
+            <div class="card text-center">
+                <p class="text-small text-muted">YOU OWE</p>
+                <p class="heading-md" id="user_owes_amount"></p>
+            </div>
+            <div class="card-secondary text-center">
+                <p class="text-small text-white">TOTAL SPENT</p>
+                <p class="heading-md" id="total_amount"></p>
+            </div>
+            <div class="card text-center">
+                <p class="text-small text-muted">OWED TO YOU</p>
+                <p class="heading-md" id="owed_to_user_amount"></p>
+            </div>
+        </div>
+
+        <h2 class="heading-md mt-lg">Expenses</h2>
+        <div class="grid" id="expenses"></div>
+
+        <a href="add_expense.html" class="btn btn-accent fab" aria-label="Add expense">+</a>
+    </div>
 </body>
-
 </html>

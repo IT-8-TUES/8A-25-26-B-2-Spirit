@@ -1,13 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
-    const divExpensesList = document.getElementById('expenses');
-
-    if (expenses.length === 0) {
-        const empty = document.createElement('p');
-        empty.textContent = 'No expenses yet.';
-        divExpensesList.appendChild(empty);
-        return;
-    }
+    const expensesList = document.getElementById('expenses');
 
     // Not linked to user
     const user = "Ivan";
@@ -16,55 +9,67 @@ document.addEventListener('DOMContentLoaded', () => {
     let userOwes = 0;
     let owedToUser = 0;
 
+    if (expenses.length === 0) {
+        const empty = document.createElement('p');
+        empty.className = 'card text-center text-muted';
+        empty.textContent = 'No expenses yet.';
+        expensesList.appendChild(empty);
+    }
+
     expenses.forEach(expense => {
-        const div = document.createElement('div');
+        // Not linked to group
+        if (expense.group !== "Travel") return;
+
+        const card = document.createElement('div');
+        card.className = 'card flex-between';
+
+        const left = document.createElement('div');
 
         const nameEl = document.createElement('p');
+        nameEl.className = 'card-title';
         nameEl.textContent = expense.expense;
 
-        const amountEl = document.createElement('p');
-        amountEl.textContent = 'Amount: ' + parseFloat(expense.amount).toFixed(2) + "lv";
-
         const paidByEl = document.createElement('p');
-        paidByEl.textContent = 'Paid by: ' + expense.paid_by;
+        paidByEl.className = 'text-muted text-small';
+        paidByEl.textContent = 'Paid by ' + expense.paid_by;
 
-        div.appendChild(nameEl);
-        div.appendChild(amountEl);
-        div.appendChild(paidByEl);
-        divExpensesList.appendChild(div);
+        left.appendChild(nameEl);
+        left.appendChild(paidByEl);
+
+        const amountEl = document.createElement('p');
+        amountEl.className = 'heading-md';
+        amountEl.textContent = parseFloat(expense.amount).toFixed(2) + ' lv';
+
+        card.appendChild(left);
+        card.appendChild(amountEl);
+        expensesList.appendChild(card);
 
         total += expense.amount;
         if (expense.paid_by === user) {
             owedToUser += expense.amount;
-        }
-        else {
+        } else {
             userOwes += expense.amount;
         }
     });
-
-    const totalEl = document.getElementById("total_amount");
-    const userOwesEl = document.getElementById("user_owes_amount");
-    const owedToUserEl = document.getElementById("owed_to_user_amount");
-
-    totalEl.innerText = total;
-    userOwesEl.innerText = userOwes;
-    owedToUserEl.innerText = owedToUser;
-
     // Not linked to group
     const participants = ["Alex", "Milen", "Kris", "Ivan"];
-    const countParticipants = document.getElementById("count_participants");
-    countParticipants.innerText = participants.length + " participants";
+    const countParticipants = participants.length
 
-    const countExpenses = document.getElementById("count_expenses");
-    countExpenses.innerText = expenses.length + " expenses";
+    userOwes /= countParticipants;
+    owedToUser /= countParticipants;
+    const fmt = (n) => n.toFixed(2) + ' lv';
+    document.getElementById('total_amount').textContent = fmt(total);
+    document.getElementById('user_owes_amount').textContent = fmt(userOwes);
+    document.getElementById('owed_to_user_amount').textContent = fmt(owedToUser);
 
+    document.getElementById('count_participants').textContent = participants.length + ' participants';
+    document.getElementById('count_expenses').textContent = expenses.length + ' expenses';
+
+    const participantsDiv = document.getElementById('participants');
     participants.forEach(participant => {
-        const div = document.getElementById("participants");
-
-        const name = document.createElement("p");
-        name.innerText = participant;
-
-        div.appendChild(name);
+        const chip = document.createElement('span');
+        chip.className = 'chip';
+        chip.textContent = participant;
+        participantsDiv.appendChild(chip);
     });
-
 });
